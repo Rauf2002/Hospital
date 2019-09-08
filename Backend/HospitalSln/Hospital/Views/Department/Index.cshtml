@@ -1,0 +1,65 @@
+﻿@model Hospital.Models.ViewModelHome
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section style{
+    <title>@Hospital.Resources.Resource.Departments</title>
+    <link href="~/Public/css/departments/departments.css" rel="stylesheet" />
+}
+
+<!-- Content Starts -->
+<main>
+    <!-- Background Image Starts -->
+    <section style="background-image:url('../../Public/img/global/header.jpg')" class="p-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="contactH">@Hospital.Resources.Resource.Departments</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Bakcground Image Ends -->
+
+    <section>
+        <div class="container">
+            <div class="row my-5">
+                <div class="col-12">
+                    <p style="color:#555555">
+                        @Hospital.Resources.Resource.Wheaties
+                    </p>
+                </div>
+            </div>
+            <div class="row flex-wrap">
+                @foreach (var department in Model.Departments)
+                {
+                    <div class="col-md-3 col-12 depCard mb-5">
+                        <div class="cardHolder">
+                            <a href="@Url.Action("One","Department",new {Id = department.Id })">
+                                <img src="~/Uploads/Departments/@department.Photo" alt="@department.NameEng">
+                            </a>
+
+                        </div>
+                        <div class="content mt-3">
+                            <div class="row ">
+                                <div class="col-12 mb-2">
+                                    @if (ViewBag.cult == "en")
+                                    {
+                                        <a href="@Url.Action("One","Department",new { Id = department.Id})" target="_blank">@department.NameEng</a>
+                                    }
+                                    else if (ViewBag.cult == "az")
+                                    {
+                                        <a href="@Url.Action("One","Department",new { Id = department.Id})" target="_blank">@department.NameAz</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Content Ends -->
